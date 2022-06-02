@@ -5,7 +5,18 @@
     <link>/</link>
     <description>Recent content on Ojun</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 02 Jun 2022 14:55:47 +0900</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 02 Jun 2022 17:09:01 +0900</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Showcase</title>
+      <link>/showcase/</link>
+      <pubDate>Thu, 02 Jun 2022 17:09:01 +0900</pubDate>
+      
+      <guid>/showcase/</guid>
+      <description>Coming soon&amp;hellip; </description>
+      <content>&lt;h1 id=&#34;coming-soon&#34;&gt;Coming soon&amp;hellip;&lt;/h1&gt;
+</content>
+    </item>
+    
     <item>
       <title>About</title>
       <link>/about/</link>
