@@ -4,6 +4,23 @@
     <title>Ojun</title>
     <link>/</link>
     <description>Recent content on Ojun</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 02 Jun 2022 14:55:47 +0900</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Thu, 02 Jun 2022 14:55:47 +0900</pubDate>
+      
+      <guid>/about/</guid>
+      <description>自己紹介 Ojun(おじゅん)と言います。日本の高1です。趣味でプログラミングをやったり、競技ディベートをしたりしています。将来、セキュリティエンジニアになるためにCTFなどを勉強中です。
+好きなプログラミング言語はPythonです。しかし、C++も競プロで多用します。ちなみに、Atcoder茶色です。
+このブログには、詰まったエラーの解決方法だったり、勉強になったことだったり、学校の勉強のことだったり&amp;hellip;なんでも記していきます。初学者の方は参考になる部分があるかもしれません(僕も初学者ですが)。一方、上級者の方は温かい目で見守ってください:)</description>
+      <content>&lt;h1 id=&#34;自己紹介&#34;&gt;自己紹介&lt;/h1&gt;
+&lt;p&gt;Ojun(おじゅん)と言います。日本の高1です。趣味でプログラミングをやったり、競技ディベートをしたりしています。将来、セキュリティエンジニアになるためにCTFなどを勉強中です。&lt;/p&gt;
+&lt;p&gt;好きなプログラミング言語はPythonです。しかし、C++も競プロで多用します。ちなみに、Atcoder茶色です。&lt;/p&gt;
+&lt;p&gt;このブログには、詰まったエラーの解決方法だったり、勉強になったことだったり、学校の勉強のことだったり&amp;hellip;なんでも記していきます。初学者の方は参考になる部分があるかもしれません(僕も初学者ですが)。一方、上級者の方は温かい目で見守ってください:)&lt;/p&gt;
+</content>
+    </item>
+    
   </channel>
 </rss>
