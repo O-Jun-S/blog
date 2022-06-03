@@ -8,10 +8,10 @@
     <lastBuildDate>Thu, 02 Jun 2022 17:09:01 +0900</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>高校生が予算0円でブログを作成した話 【hugo】</title>
-      <link>/posts/diary/2022/6_3/</link>
+      <link>/posts/tech/2022/6_3/</link>
       <pubDate>Fri, 03 Jun 2022 12:21:22 +0900</pubDate>
       
-      <guid>/posts/diary/2022/6_3/</guid>
+      <guid>/posts/tech/2022/6_3/</guid>
       <description>今日、高校生である僕、Ojunがブログを予算0円で作成した。
 他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。HTMLとかCSSとか書くのめんどくさいし
 この記事では、どのようにブログを立てたのか紹介しようと思う。参考にしてもらえたら幸いだ。
