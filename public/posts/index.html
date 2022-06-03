@@ -130,7 +130,7 @@
     
       <div class="post on-list">
         <h1 class="post-title">
-          <a href="/posts/tech/2022/6_3/">高校生が予算0円でブログを作成した話 【hugo】</a>
+          <a href="/posts/tech/2022/6_3/started_blog/">高校生が予算0円でブログを作成した話 【hugo】</a>
         </h1>
         <div class="post-meta">
           <span class="post-date">
@@ -147,7 +147,8 @@
       
         <div class="post-content">
           
-            今日、高校生である僕、Ojunがブログを予算0円で作成した。
+            {{ $image := .Resources.GetMatch “img/blog_eyecatch.jpg” }}
+今日、高校生である僕、Ojunがブログを予算0円で作成した。
 他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。HTMLとかCSSとか書くのめんどくさいし
 この記事では、どのようにブログを立てたのか紹介しようと思う。参考にしてもらえたら幸いだ。
 使用技術 静的サイトジェネレータ(SSG)としてhugo frameworkを採用。デプロイにはnetlifyを用いた。どうやらhugo frameworkは爆速らしい。netlifyは基本無料で使えるサービスである。ドメインはfreenomで無料で取り、SSL化まで無料でできてしまった。
@@ -168,7 +169,7 @@ $ hugo server -D $ hugo server -t terminal (themeが僕と同じterminalの場�
         
         <div>
           <a class="read-more button"
-            href="/posts/tech/2022/6_3/">Read more →</a>
+            href="/posts/tech/2022/6_3/started_blog/">Read more →</a>
         </div>
         
       </div>
