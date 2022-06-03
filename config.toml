@@ -92,5 +92,5 @@ paginate = 5
 
 [markup]
     [markup.tableOfContents]
-        endLevel = 2
-        startLevel = 1
+        endLevel = 3
+        startLevel = 2
