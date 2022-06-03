@@ -12,7 +12,7 @@
       <pubDate>Fri, 03 Jun 2022 12:21:22 +0900</pubDate>
       
       <guid>/posts/tech/2022/6_3/started_blog/</guid>
-      <description>はじめに 今日、高校生である僕、Ojunがブログを予算0円で作成した。
+      <description>はじめに 今日、高校生の僕(Ojun)がブログを予算0円で作成した。
 他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。HTMLとかCSSとか書くのめんどくさいし
 この記事では、どのようにブログを立てたのか紹介しようと思う。参考にしてもらえたら幸いだ。
 使用技術 静的サイトジェネレータ(SSG)としてhugo frameworkを採用。デプロイにはnetlifyを用いた。どうやらhugo frameworkは爆速らしい。netlifyは基本無料で使えるサービスである。ドメインはfreenomで無料で取り、SSL化まで無料でできてしまった。
@@ -28,7 +28,7 @@ $ hugo new posts/first-post.md すると、次のようなファイルが作成�
 $ hugo -D 最後に、localhostでサーバーを立ててみよう。これも以下のコマンドでできる。
 $ hugo server -D $ hugo server -t terminal (themeが僕と同じterminalの場合のみ。正直違いはよく知らない) すると、localhost:1313にサーバーが立っているはずである。ひとまず、SSGを使ってサイトが建てられた。</description>
       <content>&lt;h1 id=&#34;はじめに&#34;&gt;はじめに&lt;/h1&gt;
-&lt;p&gt;今日、高校生である僕、Ojunがブログを予算0円で作成した。&lt;/p&gt;
+&lt;p&gt;今日、高校生の僕(Ojun)がブログを予算0円で作成した。&lt;/p&gt;
 &lt;p&gt;他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。&lt;del&gt;HTMLとかCSSとか書くのめんどくさいし&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;この記事では、どのようにブログを立てたのか紹介しようと思う。参考にしてもらえたら幸いだ。&lt;/p&gt;
 &lt;h1 id=&#34;使用技術&#34;&gt;使用技術&lt;/h1&gt;
