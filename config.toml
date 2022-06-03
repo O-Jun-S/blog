@@ -90,3 +90,7 @@ paginate = 5
         name = "Showcase"
         url = "/showcase"
 
+[markup]
+    [markup.tableOfContents]
+        endLevel = 2
+        startLevel = 1
