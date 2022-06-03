@@ -187,30 +187,30 @@
 <p>Windows10上で、WSLのUbuntuを使用している。</p>
 <h2 id="hugoを使って静的webサイトを作成">hugoを使って静的webサイトを作成<a href="#hugoを使って静的webサイトを作成" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
 <p>まず、hugoをインストールする。もちろんパッケージマネージャーは好きなものを使ってよい。僕はaptを使う。</p>
-<pre><code>$ sudo apt install hugo
-</code></pre><p>次に、webサイトのひな形を作る。</p>
-<pre><code>$ hugo new site (サイト名)
-</code></pre><p>によって作成できる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install hugo
+</code></pre></div><p>次に、webサイトのひな形を作る。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo new site <span style="color:#f92672">(</span>サイト名<span style="color:#f92672">)</span>
+</code></pre></div><p>によって作成できる。</p>
 <p>そして、themeを入れる。hugoには多彩なthemeがあるが、僕は<a href="https://github.com/panr/hugo-theme-terminal">terminal</a>を用いた。
 theme一覧は<a href="https://themes.gohugo.io/">ここ</a>にある。</p>
-<pre><code>$ git init # まだgitリポジトリでないなら実行
-$ git submodule add -f https://github.com/panr/hugo-theme-terminal.git themes/terminal
-</code></pre><p>次にconfigを設定する。プロジェクトルートにconfig.tomlファイルがあるだろう。僕はgithubのREADMEを見ながらconfigを設定した。個人個人、選んだthemeが異なるので、それぞれのREADMEやhugoのdocsを見てもらいたい。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git init <span style="color:#75715e"># まだgitリポジトリでないなら実行</span>
+git submodule add -f https://github.com/panr/hugo-theme-terminal.git themes/terminal
+</code></pre></div><p>次にconfigを設定する。プロジェクトルートにconfig.tomlファイルがあるだろう。僕はgithubのREADMEを見ながらconfigを設定した。個人個人、選んだthemeが異なるので、それぞれのREADMEやhugoのdocsを見てもらいたい。</p>
 <p>ここで、一つ記事を作成してみよう。</p>
-<pre><code>$ hugo new posts/first-post.md
-</code></pre><p>すると、次のようなファイルが作成される。</p>
-<pre><code>---
-title: &quot;My First Post&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo new posts/first-post.md
+</code></pre></div><p>すると、次のようなファイルが作成される。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">---
+title: &#34;My First Post&#34;
 date: 2019-03-26T08:47:11+01:00
 draft: true
 ---
-</code></pre><p>ここで、記事を書いてみよう。もちろん書き方は<a href="http://www.markdown.jp/what-is-markdown/">markdown</a>である。記事を書いたらdraftをfalseにしてほしい。
+</code></pre></div><p>ここで、記事を書いてみよう。もちろん書き方は<a href="http://www.markdown.jp/what-is-markdown/">markdown</a>である。記事を書いたらdraftをfalseにしてほしい。
 次に、markdownからHTMLを作成しよう。以下のコマンド一発でできる。</p>
-<pre><code>$ hugo -D
-</code></pre><p>最後に、localhostでサーバーを立ててみよう。これも以下のコマンドでできる。</p>
-<pre><code>$ hugo server -D
-$ hugo server -t terminal (themeが僕と同じterminalの場合のみ。正直違いはよく知らない)
-</code></pre><p>すると、localhost:1313にサーバーが立っているはずである。ひとまず、SSGを使ってサイトが建てられた。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo -D
+</code></pre></div><p>最後に、localhostでサーバーを立ててみよう。これも以下のコマンドでできる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo server -D
+hugo server -t terminal <span style="color:#f92672">(</span>themeが僕と同じterminalの場合のみ。正直違いはよく知らない<span style="color:#f92672">)</span>
+</code></pre></div><p>すると、localhost:1313にサーバーが立っているはずである。ひとまず、SSGを使ってサイトが建てられた。</p>
 <h2 id="netlifyにデプロイ">netlifyにデプロイ<a href="#netlifyにデプロイ" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
 <p>まず、<a href="https://app.netlify.com/">netlify</a>に登録した。正直、githubリポジトリを登録するだけで簡単にデプロイできるので、説明はあまり要らないだろう。</p>
 <h2 id="ドメイン取得">ドメイン取得<a href="#ドメイン取得" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
