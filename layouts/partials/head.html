@@ -36,7 +36,7 @@
   {{ end }}
 
   {{ if (isset $.Params "cover") }}
-    <meta name=”twitter:image” content="https://ojun.ga/{{ path.Join $.File.Dir $.Params.cover }}" />
+    <meta name="twitter:image" content="https://ojun.ga/{{ path.Join $.File.Dir $.Params.cover }}" />
   {{ end }}
 
     <meta name="twitter:creator" content="{{ if .IsHome }}{{ $.Site.Params.Twitter.creator }}{{ else if isset .Params "authortwitter" }}{{ .Params.authorTwitter }}{{ else }}{{ .Params.Author }}{{ end }}" />
