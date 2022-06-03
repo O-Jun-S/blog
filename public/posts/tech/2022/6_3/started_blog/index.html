@@ -161,27 +161,31 @@
       </h2>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#はじめに">はじめに</a></li>
-    <li><a href="#使用技術">使用技術</a></li>
-    <li><a href="#環境">環境</a></li>
-    <li><a href="#hugoを使って静的webサイトを作成">hugoを使って静的webサイトを作成</a></li>
-    <li><a href="#netlifyにデプロイ">netlifyにデプロイ</a></li>
-    <li><a href="#ドメイン取得">ドメイン取得</a></li>
+    <li>
+      <ul>
+        <li><a href="#はじめに">はじめに</a></li>
+        <li><a href="#使用技術">使用技術</a></li>
+        <li><a href="#環境">環境</a></li>
+        <li><a href="#hugoを使って静的webサイトを作成">hugoを使って静的webサイトを作成</a></li>
+        <li><a href="#netlifyにデプロイ">netlifyにデプロイ</a></li>
+        <li><a href="#ドメイン取得">ドメイン取得</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     </div>
   
 
   <div class="post-content"><div>
-        <h1 id="はじめに">はじめに<a href="#はじめに" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+        <h2 id="はじめに">はじめに<a href="#はじめに" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
 <p>今日、高校生の僕(Ojun)がブログを予算0円で作成した。</p>
 <p>他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。<del>HTMLとかCSSとか書くのめんどくさいし</del></p>
 <p>この記事では、どのようにブログを立てたのか紹介しようと思う。参考にしてもらえたら幸いだ。</p>
-<h1 id="使用技術">使用技術<a href="#使用技術" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h2 id="使用技術">使用技術<a href="#使用技術" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
 <p>静的サイトジェネレータ(SSG)として<a href="https://gohugo.io/">hugo framework</a>を採用。デプロイには<a href="https://app.netlify.com/">netlify</a>を用いた。どうやらhugo frameworkは爆速らしい。netlifyは基本無料で使えるサービスである。ドメインはfreenomで無料で取り、SSL化まで無料でできてしまった。</p>
-<h1 id="環境">環境<a href="#環境" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h2 id="環境">環境<a href="#環境" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
 <p>Windows10上で、WSLのUbuntuを使用している。</p>
-<h1 id="hugoを使って静的webサイトを作成">hugoを使って静的webサイトを作成<a href="#hugoを使って静的webサイトを作成" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h2 id="hugoを使って静的webサイトを作成">hugoを使って静的webサイトを作成<a href="#hugoを使って静的webサイトを作成" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
 <p>まず、hugoをインストールする。もちろんパッケージマネージャーは好きなものを使ってよい。僕はaptを使う。</p>
 <pre><code>$ sudo apt install hugo
 </code></pre><p>次に、webサイトのひな形を作る。</p>
@@ -207,9 +211,9 @@ draft: true
 <pre><code>$ hugo server -D
 $ hugo server -t terminal (themeが僕と同じterminalの場合のみ。正直違いはよく知らない)
 </code></pre><p>すると、localhost:1313にサーバーが立っているはずである。ひとまず、SSGを使ってサイトが建てられた。</p>
-<h1 id="netlifyにデプロイ">netlifyにデプロイ<a href="#netlifyにデプロイ" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h2 id="netlifyにデプロイ">netlifyにデプロイ<a href="#netlifyにデプロイ" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
 <p>まず、<a href="https://app.netlify.com/">netlify</a>に登録した。正直、githubリポジトリを登録するだけで簡単にデプロイできるので、説明はあまり要らないだろう。</p>
-<h1 id="ドメイン取得">ドメイン取得<a href="#ドメイン取得" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h2 id="ドメイン取得">ドメイン取得<a href="#ドメイン取得" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
 <p>ドメインは<a href="https://www.freenom.com/ja/index.html?lang=ja">freenom</a>で無料で取得した。freenomは日本語が怪しいが、今まで特に障害はなかった。</p>
 
       </div></div>

@@ -1,9 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
 
-* {
+body {
     font-family: 'Comfortaa', cursive;
 }
 
-h1 {
+.menu-trigger {
+    cursor: pointer;
+    user-select: none;
+}
+
+h2.hanchor {
+    user-select: none;
+}
+
+.post {
+    margin-top: 10px;
+}
+
+.post h1.post-title {
     margin-top: 10px;
 }

@@ -27,15 +27,15 @@ $ hugo new posts/first-post.md すると、次のようなファイルが作成�
 --- title: &amp;quot;My First Post&amp;quot; date: 2019-03-26T08:47:11+01:00 draft: true --- ここで、記事を書いてみよう。もちろん書き方はmarkdownである。記事を書いたらdraftをfalseにしてほしい。 次に、markdownからHTMLを作成しよう。以下のコマンド一発でできる。
 $ hugo -D 最後に、localhostでサーバーを立ててみよう。これも以下のコマンドでできる。
 $ hugo server -D $ hugo server -t terminal (themeが僕と同じterminalの場合のみ。正直違いはよく知らない) すると、localhost:1313にサーバーが立っているはずである。ひとまず、SSGを使ってサイトが建てられた。</description>
-      <content>&lt;h1 id=&#34;はじめに&#34;&gt;はじめに&lt;/h1&gt;
+      <content>&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;
 &lt;p&gt;今日、高校生の僕(Ojun)がブログを予算0円で作成した。&lt;/p&gt;
 &lt;p&gt;他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。&lt;del&gt;HTMLとかCSSとか書くのめんどくさいし&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;この記事では、どのようにブログを立てたのか紹介しようと思う。参考にしてもらえたら幸いだ。&lt;/p&gt;
-&lt;h1 id=&#34;使用技術&#34;&gt;使用技術&lt;/h1&gt;
+&lt;h2 id=&#34;使用技術&#34;&gt;使用技術&lt;/h2&gt;
 &lt;p&gt;静的サイトジェネレータ(SSG)として&lt;a href=&#34;https://gohugo.io/&#34;&gt;hugo framework&lt;/a&gt;を採用。デプロイには&lt;a href=&#34;https://app.netlify.com/&#34;&gt;netlify&lt;/a&gt;を用いた。どうやらhugo frameworkは爆速らしい。netlifyは基本無料で使えるサービスである。ドメインはfreenomで無料で取り、SSL化まで無料でできてしまった。&lt;/p&gt;
-&lt;h1 id=&#34;環境&#34;&gt;環境&lt;/h1&gt;
+&lt;h2 id=&#34;環境&#34;&gt;環境&lt;/h2&gt;
 &lt;p&gt;Windows10上で、WSLのUbuntuを使用している。&lt;/p&gt;
-&lt;h1 id=&#34;hugoを使って静的webサイトを作成&#34;&gt;hugoを使って静的webサイトを作成&lt;/h1&gt;
+&lt;h2 id=&#34;hugoを使って静的webサイトを作成&#34;&gt;hugoを使って静的webサイトを作成&lt;/h2&gt;
 &lt;p&gt;まず、hugoをインストールする。もちろんパッケージマネージャーは好きなものを使ってよい。僕はaptを使う。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ sudo apt install hugo
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;次に、webサイトのひな形を作る。&lt;/p&gt;
@@ -61,9 +61,9 @@ draft: true
 &lt;pre&gt;&lt;code&gt;$ hugo server -D
 $ hugo server -t terminal (themeが僕と同じterminalの場合のみ。正直違いはよく知らない)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;すると、localhost:1313にサーバーが立っているはずである。ひとまず、SSGを使ってサイトが建てられた。&lt;/p&gt;
-&lt;h1 id=&#34;netlifyにデプロイ&#34;&gt;netlifyにデプロイ&lt;/h1&gt;
+&lt;h2 id=&#34;netlifyにデプロイ&#34;&gt;netlifyにデプロイ&lt;/h2&gt;
 &lt;p&gt;まず、&lt;a href=&#34;https://app.netlify.com/&#34;&gt;netlify&lt;/a&gt;に登録した。正直、githubリポジトリを登録するだけで簡単にデプロイできるので、説明はあまり要らないだろう。&lt;/p&gt;
-&lt;h1 id=&#34;ドメイン取得&#34;&gt;ドメイン取得&lt;/h1&gt;
+&lt;h2 id=&#34;ドメイン取得&#34;&gt;ドメイン取得&lt;/h2&gt;
 &lt;p&gt;ドメインは&lt;a href=&#34;https://www.freenom.com/ja/index.html?lang=ja&#34;&gt;freenom&lt;/a&gt;で無料で取得した。freenomは日本語が怪しいが、今まで特に障害はなかった。&lt;/p&gt;
 </content>
     </item>
@@ -75,7 +75,7 @@ $ hugo server -t terminal (themeが僕と同じterminalの場合のみ。正直�
       
       <guid>/showcase/</guid>
       <description>Coming soon&amp;hellip; </description>
-      <content>&lt;h1 id=&#34;coming-soon&#34;&gt;Coming soon&amp;hellip;&lt;/h1&gt;
+      <content>&lt;h2 id=&#34;coming-soon&#34;&gt;Coming soon&amp;hellip;&lt;/h2&gt;
 </content>
     </item>
     
@@ -88,7 +88,7 @@ $ hugo server -t terminal (themeが僕と同じterminalの場合のみ。正直�
       <description>自己紹介 Ojun(おじゅん)と言います。日本の高1です。趣味でプログラミングをやったり、競技ディベートをしたりしています。将来、セキュリティエンジニアになるためにCTFなどを勉強中です。
 好きなプログラミング言語はPythonです。しかし、C++も競プロで多用します。ちなみに、Atcoder茶色です。
 このブログには、詰まったエラーの解決方法だったり、勉強になったことだったり、学校の勉強のことだったり&amp;hellip;なんでも記していきます。初学者の方は参考になる部分があるかもしれません(僕も初学者ですが)。一方、上級者の方は温かい目で見守ってください:)</description>
-      <content>&lt;h1 id=&#34;自己紹介&#34;&gt;自己紹介&lt;/h1&gt;
+      <content>&lt;h2 id=&#34;自己紹介&#34;&gt;自己紹介&lt;/h2&gt;
 &lt;p&gt;Ojun(おじゅん)と言います。日本の高1です。趣味でプログラミングをやったり、競技ディベートをしたりしています。将来、セキュリティエンジニアになるためにCTFなどを勉強中です。&lt;/p&gt;
 &lt;p&gt;好きなプログラミング言語はPythonです。しかし、C++も競プロで多用します。ちなみに、Atcoder茶色です。&lt;/p&gt;
 &lt;p&gt;このブログには、詰まったエラーの解決方法だったり、勉強になったことだったり、学校の勉強のことだったり&amp;hellip;なんでも記していきます。初学者の方は参考になる部分があるかもしれません(僕も初学者ですが)。一方、上級者の方は温かい目で見守ってください:)&lt;/p&gt;
