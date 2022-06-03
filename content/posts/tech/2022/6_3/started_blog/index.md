@@ -2,9 +2,13 @@
 title: "高校生が予算0円でブログを作成した話 【hugo】"
 date: 2022-06-03T12:21:22+09:00
 draft: false
+cover: "img/blog_eyecatch.jpg"
+description: "今日、高校生である僕、Ojunがブログを予算0円で作成した。
+
+他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。"
 ---
 
-{{ $image := .Resources.GetMatch "img/blog_eyecatch.jpg" }}
+{{< figure src="img/blog_eyecatch.jpg" title="eyecatch" >}}
 
 今日、高校生である僕、Ojunがブログを予算0円で作成した。
 
