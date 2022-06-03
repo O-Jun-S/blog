@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Diary on Ojun</title>
+    <link>/posts/diary/</link>
+    <description>Recent content in Diary on Ojun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 03 Jun 2022 12:13:28 +0900</lastBuildDate>
+    
+	<atom:link href="/posts/diary/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>高校生が予算0円でブログを作成した話 【hugo】</title>
+      <link>/posts/diary/2022/6_3/</link>
+      <pubDate>Fri, 03 Jun 2022 12:21:22 +0900</pubDate>
+      
+      <guid>/posts/diary/2022/6_3/</guid>
+      <description>今日、高校生である僕、Ojunがブログを予算0円で作成した。
+他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。HTMLとかCSSとか書くのめんどくさいし
+この記事では、どのようにブログを立てたのか紹介しようと思う。参考にしてもらえたら幸いだ。
+使用技術 静的サイトジェネレータ(SSG)としてhugo frameworkを採用。デプロイにはnetlifyを用いた。どうやらhugo frameworkは爆速らしい。netlifyは基本無料で使えるサービスである。ドメインはfreenomで無料で取り、SSL化まで無料でできてしまった。
+環境 [~]$ neofetch .-/+oossssoo+/-. ojun@DESKTOP-U7TVCR7 `:+ssssssssssssssssss+:` -------------------- -+ssssssssssssssssssyyssss+- OS: Ubuntu 20.04.4 LTS focal on Windows 10 x86_64 .ossssssssssssssssssdMMMNysssso. Kernel: 5.4.72-microsoft-standard-WSL2 /ssssssssssshdmmNNmmyNMMMMhssssss/ Uptime: 6 hours, 51 mins +ssssssssshmydMMMMMMMNddddyssssssss+ Packages: 1048 (dpkg), 21 (brew) /sssssssshNMMMyhhyyyyhmNMMMNhssssssss/ Shell: zsh 5.8 .ssssssssdMMMNhsssssssssshNMMMdssssssss. +sssshhhyNMMNyssssssssssssyNMMMysssssss+ ossyNMMMNyMMhsssssssssssssshmmmhssssssso ossyNMMMNyMMhsssssssssssssshmmmhssssssso +sssshhhyNMMNyssssssssssssyNMMMysssssss+ .ssssssssdMMMNhsssssssssshNMMMdssssssss. /sssssssshNMMMyhhyyyyhdNMMMNhssssssss/ +sssssssssdmydMMMMMMMMddddyssssssss+ /ssssssssssshdmNNNNmyNMMMMhssssss/ .ossssssssssssssssssdMMMNysssso. -+sssssssssssssssssyyyssss+- `:+ssssssssssssssssss+:` .-/+oossssoo+/-. hugoを使って静的webサイトを作成 まず、hugoをインストールする。もちろんパッケージマネージャーは好きなものを使ってよい。僕はaptを使う。
+$ sudo apt install hugo 次に、webサイトのひな形を作る。
+$ hugo new site (サイト名) によって作成できる。</description>
+    </item>
+    
+  </channel>
+</rss>

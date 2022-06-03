@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ojun</title>
-    <link>/</link>
-    <description>Recent content on Ojun</description>
+    <title>Posts on Ojun</title>
+    <link>/posts/</link>
+    <description>Recent content in Posts on Ojun</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 02 Jun 2022 17:09:01 +0900</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Jun 2022 12:21:22 +0900</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>高校生が予算0円でブログを作成した話 【hugo】</title>
       <link>/posts/diary/2022/6_3/</link>
@@ -64,33 +64,6 @@ $ hugo server -t terminal (themeが僕と同じterminalの場合のみ。正直�
 &lt;p&gt;まず、&lt;a href=&#34;https://app.netlify.com/&#34;&gt;netlify&lt;/a&gt;に登録した。正直、githubリポジトリを登録するだけで簡単にデプロイできるので、説明はあまり要らないだろう。&lt;/p&gt;
 &lt;h1 id=&#34;ドメイン取得&#34;&gt;ドメイン取得&lt;/h1&gt;
 &lt;p&gt;ドメインは&lt;a href=&#34;https://www.freenom.com/ja/index.html?lang=ja&#34;&gt;freenom&lt;/a&gt;で無料で取得した。freenomは日本語が怪しいが、今まで特に障害はなかった。&lt;/p&gt;
-</content>
-    </item>
-    
-    <item>
-      <title>Showcase</title>
-      <link>/showcase/</link>
-      <pubDate>Thu, 02 Jun 2022 17:09:01 +0900</pubDate>
-      
-      <guid>/showcase/</guid>
-      <description>Coming soon&amp;hellip; </description>
-      <content>&lt;h1 id=&#34;coming-soon&#34;&gt;Coming soon&amp;hellip;&lt;/h1&gt;
-</content>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>/about/</link>
-      <pubDate>Thu, 02 Jun 2022 14:55:47 +0900</pubDate>
-      
-      <guid>/about/</guid>
-      <description>自己紹介 Ojun(おじゅん)と言います。日本の高1です。趣味でプログラミングをやったり、競技ディベートをしたりしています。将来、セキュリティエンジニアになるためにCTFなどを勉強中です。
-好きなプログラミング言語はPythonです。しかし、C++も競プロで多用します。ちなみに、Atcoder茶色です。
-このブログには、詰まったエラーの解決方法だったり、勉強になったことだったり、学校の勉強のことだったり&amp;hellip;なんでも記していきます。初学者の方は参考になる部分があるかもしれません(僕も初学者ですが)。一方、上級者の方は温かい目で見守ってください:)</description>
-      <content>&lt;h1 id=&#34;自己紹介&#34;&gt;自己紹介&lt;/h1&gt;
-&lt;p&gt;Ojun(おじゅん)と言います。日本の高1です。趣味でプログラミングをやったり、競技ディベートをしたりしています。将来、セキュリティエンジニアになるためにCTFなどを勉強中です。&lt;/p&gt;
-&lt;p&gt;好きなプログラミング言語はPythonです。しかし、C++も競プロで多用します。ちなみに、Atcoder茶色です。&lt;/p&gt;
-&lt;p&gt;このブログには、詰まったエラーの解決方法だったり、勉強になったことだったり、学校の勉強のことだったり&amp;hellip;なんでも記していきます。初学者の方は参考になる部分があるかもしれません(僕も初学者ですが)。一方、上級者の方は温かい目で見守ってください:)&lt;/p&gt;
 </content>
     </item>
     

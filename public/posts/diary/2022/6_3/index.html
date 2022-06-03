@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  
+    <title>高校生が予算0円でブログを作成した話 【hugo】 :: Ojun</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="今日、高校生である僕、Ojunがブログを予算0円で作成した。
+他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。HTMLとかCSSとか書くのめんどくさいし
+この記事では、どのようにブログを立てたのか紹介しようと思う。参考にしてもらえたら幸いだ。
+使用技術 静的サイトジェネレータ(SSG)としてhugo frameworkを採用。デプロイにはnetlifyを用いた。どうやらhugo frameworkは爆速らしい。netlifyは基本無料で使えるサービスである。ドメインはfreenomで無料で取り、SSL化まで無料でできてしまった。
+環境 Windows10上で、WSLのUbuntuを使用している。
+hugoを使って静的webサイトを作成 まず、hugoをインストールする。もちろんパッケージマネージャーは好きなものを使ってよい。僕はaptを使う。
+$ sudo apt install hugo 次に、webサイトのひな形を作る。
+$ hugo new site (サイト名) によって作成できる。
+そして、themeを入れる。hugoには多彩なthemeがあるが、僕はterminalを用いた。 theme一覧はここにある。
+$ git init # まだgitリポジトリでないなら実行 $ git submodule add -f https://github.com/panr/hugo-theme-terminal.git themes/terminal 次にconfigを設定する。プロジェクトルートにconfig.tomlファイルがあるだろう。僕はgithubのREADMEを見ながらconfigを設定した。個人個人、選んだthemeが異なるので、それぞれのREADMEやhugoのdocsを見てもらいたい。
+ここで、一つ記事を作成してみよう。
+$ hugo new posts/first-post.md すると、次のようなファイルが作成される。
+--- title: &amp;quot;My First Post&amp;quot; date: 2019-03-26T08:47:11&#43;01:00 draft: true --- ここで、記事を書いてみよう。もちろん書き方はmarkdownである。記事を書いたらdraftをfalseにしてほしい。 次に、markdownからHTMLを作成しよう。以下のコマンド一発でできる。
+$ hugo -D 最後に、localhostでサーバーを立ててみよう。これも以下のコマンドでできる。
+$ hugo server -D $ hugo server -t terminal (themeが僕と同じterminalの場合のみ。正直違いはよく知らない) すると、localhost:1313にサーバーが立っているはずである。ひとまず、SSGを使ってサイトが建てられた。" />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/posts/diary/2022/6_3/" />
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+  <link rel="stylesheet" href="/assets/blue.css">
+
+
+
+<link rel="stylesheet" href="/style.css">
+
+
+<link rel="apple-touch-icon" href="/img/apple-touch-icon-192x192.png">
+
+  <link rel="shortcut icon" href="/img/favicon/blue.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="Ojun" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="ja" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="高校生が予算0円でブログを作成した話 【hugo】">
+<meta property="og:description" content="今日、高校生である僕、Ojunがブログを予算0円で作成した。
+他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。HTMLとかCSSとか書くのめんどくさいし
+この記事では、どのようにブログを立てたのか紹介しようと思う。参考にしてもらえたら幸いだ。
+使用技術 静的サイトジェネレータ(SSG)としてhugo frameworkを採用。デプロイにはnetlifyを用いた。どうやらhugo frameworkは爆速らしい。netlifyは基本無料で使えるサービスである。ドメインはfreenomで無料で取り、SSL化まで無料でできてしまった。
+環境 Windows10上で、WSLのUbuntuを使用している。
+hugoを使って静的webサイトを作成 まず、hugoをインストールする。もちろんパッケージマネージャーは好きなものを使ってよい。僕はaptを使う。
+$ sudo apt install hugo 次に、webサイトのひな形を作る。
+$ hugo new site (サイト名) によって作成できる。
+そして、themeを入れる。hugoには多彩なthemeがあるが、僕はterminalを用いた。 theme一覧はここにある。
+$ git init # まだgitリポジトリでないなら実行 $ git submodule add -f https://github.com/panr/hugo-theme-terminal.git themes/terminal 次にconfigを設定する。プロジェクトルートにconfig.tomlファイルがあるだろう。僕はgithubのREADMEを見ながらconfigを設定した。個人個人、選んだthemeが異なるので、それぞれのREADMEやhugoのdocsを見てもらいたい。
+ここで、一つ記事を作成してみよう。
+$ hugo new posts/first-post.md すると、次のようなファイルが作成される。
+--- title: &amp;quot;My First Post&amp;quot; date: 2019-03-26T08:47:11&#43;01:00 draft: true --- ここで、記事を書いてみよう。もちろん書き方はmarkdownである。記事を書いたらdraftをfalseにしてほしい。 次に、markdownからHTMLを作成しよう。以下のコマンド一発でできる。
+$ hugo -D 最後に、localhostでサーバーを立ててみよう。これも以下のコマンドでできる。
+$ hugo server -D $ hugo server -t terminal (themeが僕と同じterminalの場合のみ。正直違いはよく知らない) すると、localhost:1313にサーバーが立っているはずである。ひとまず、SSGを使ってサイトが建てられた。" />
+<meta property="og:url" content="/posts/diary/2022/6_3/" />
+<meta property="og:site_name" content="Ojun" />
+
+  
+    <meta property="og:image" content="/img/favicon/blue.png">
+  
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+  <meta property="article:published_time" content="2022-06-03 12:21:22 &#43;0900 JST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="blue">
+
+
+<div class="container headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Ojun
+  </div>
+</a>
+
+    </div>
+    
+      <div class="menu-trigger">menu</div>
+    
+  </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/showcase">Showcase</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="/posts/diary/2022/6_3/">高校生が予算0円でブログを作成した話 【hugo】</a></h1>
+  <div class="post-meta">
+    
+      <span class="post-date">
+        2022-06-03
+        
+          [Updated: 2022-06-03]
+        
+      </span>
+    
+    
+    
+  </div>
+
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>今日、高校生である僕、Ojunがブログを予算0円で作成した。</p>
+<p>他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。<del>HTMLとかCSSとか書くのめんどくさいし</del></p>
+<p>この記事では、どのようにブログを立てたのか紹介しようと思う。参考にしてもらえたら幸いだ。</p>
+<h1 id="使用技術">使用技術<a href="#使用技術" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>静的サイトジェネレータ(SSG)として<a href="https://gohugo.io/">hugo framework</a>を採用。デプロイには<a href="https://app.netlify.com/">netlify</a>を用いた。どうやらhugo frameworkは爆速らしい。netlifyは基本無料で使えるサービスである。ドメインはfreenomで無料で取り、SSL化まで無料でできてしまった。</p>
+<h1 id="環境">環境<a href="#環境" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>Windows10上で、WSLのUbuntuを使用している。</p>
+<h1 id="hugoを使って静的webサイトを作成">hugoを使って静的webサイトを作成<a href="#hugoを使って静的webサイトを作成" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>まず、hugoをインストールする。もちろんパッケージマネージャーは好きなものを使ってよい。僕はaptを使う。</p>
+<pre><code>$ sudo apt install hugo
+</code></pre><p>次に、webサイトのひな形を作る。</p>
+<pre><code>$ hugo new site (サイト名)
+</code></pre><p>によって作成できる。</p>
+<p>そして、themeを入れる。hugoには多彩なthemeがあるが、僕は<a href="https://github.com/panr/hugo-theme-terminal">terminal</a>を用いた。
+theme一覧は<a href="https://themes.gohugo.io/">ここ</a>にある。</p>
+<pre><code>$ git init # まだgitリポジトリでないなら実行
+$ git submodule add -f https://github.com/panr/hugo-theme-terminal.git themes/terminal
+</code></pre><p>次にconfigを設定する。プロジェクトルートにconfig.tomlファイルがあるだろう。僕はgithubのREADMEを見ながらconfigを設定した。個人個人、選んだthemeが異なるので、それぞれのREADMEやhugoのdocsを見てもらいたい。</p>
+<p>ここで、一つ記事を作成してみよう。</p>
+<pre><code>$ hugo new posts/first-post.md
+</code></pre><p>すると、次のようなファイルが作成される。</p>
+<pre><code>---
+title: &quot;My First Post&quot;
+date: 2019-03-26T08:47:11+01:00
+draft: true
+---
+</code></pre><p>ここで、記事を書いてみよう。もちろん書き方は<a href="http://www.markdown.jp/what-is-markdown/">markdown</a>である。記事を書いたらdraftをfalseにしてほしい。
+次に、markdownからHTMLを作成しよう。以下のコマンド一発でできる。</p>
+<pre><code>$ hugo -D
+</code></pre><p>最後に、localhostでサーバーを立ててみよう。これも以下のコマンドでできる。</p>
+<pre><code>$ hugo server -D
+$ hugo server -t terminal (themeが僕と同じterminalの場合のみ。正直違いはよく知らない)
+</code></pre><p>すると、localhost:1313にサーバーが立っているはずである。ひとまず、SSGを使ってサイトが建てられた。</p>
+<h1 id="netlifyにデプロイ">netlifyにデプロイ<a href="#netlifyにデプロイ" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>まず、<a href="https://app.netlify.com/">netlify</a>に登録した。正直、githubリポジトリを登録するだけで簡単にデプロイできるので、説明はあまり要らないだろう。</p>
+<h1 id="ドメイン取得">ドメイン取得<a href="#ドメイン取得" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>ドメインは<a href="https://www.freenom.com/ja/index.html?lang=ja">freenom</a>で無料で取得した。freenomは日本語が怪しいが、今まで特に障害はなかった。</p>
+
+      </div></div>
+
+  
+  
+  
+
+  
+  
+
+  
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2022 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
