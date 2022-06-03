@@ -9,6 +9,10 @@ body {
     user-select: none;
 }
 
+h2.hanchor {
+    user-select: none;
+}
+
 .post {
     margin-top: 10px;
 }
