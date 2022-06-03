@@ -4,6 +4,8 @@ date: 2022-06-03T12:21:22+09:00
 draft: false
 ---
 
+{{ $image := .Resources.GetMatch "img/blog_eyecatch.jpg" }}
+
 今日、高校生である僕、Ojunがブログを予算0円で作成した。
 
 他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。~~HTMLとかCSSとか書くのめんどくさいし~~
