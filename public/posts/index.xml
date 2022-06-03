@@ -27,14 +27,7 @@ $ hugo new posts/first-post.md すると、次のようなファイルが作成�
 --- title: &amp;quot;My First Post&amp;quot; date: 2019-03-26T08:47:11+01:00 draft: true --- ここで、記事を書いてみよう。もちろん書き方はmarkdownである。記事を書いたらdraftをfalseにしてほしい。 次に、markdownからHTMLを作成しよう。以下のコマンド一発でできる。
 $ hugo -D 最後に、localhostでサーバーを立ててみよう。これも以下のコマンドでできる。
 $ hugo server -D $ hugo server -t terminal (themeが僕と同じterminalの場合のみ。正直違いはよく知らない) すると、localhost:1313にサーバーが立っているはずである。ひとまず、SSGを使ってサイトが建てられた。</description>
-      <content>
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;img/blog_eyecatch.jpg&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;今日、高校生である僕、Ojunがブログを予算0円で作成した。&lt;/p&gt;
+      <content>&lt;p&gt;今日、高校生である僕、Ojunがブログを予算0円で作成した。&lt;/p&gt;
 &lt;p&gt;他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。&lt;del&gt;HTMLとかCSSとか書くのめんどくさいし&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;この記事では、どのようにブログを立てたのか紹介しようと思う。参考にしてもらえたら幸いだ。&lt;/p&gt;
 &lt;h1 id=&#34;使用技術&#34;&gt;使用技術&lt;/h1&gt;
