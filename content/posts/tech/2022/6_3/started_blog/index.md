@@ -8,20 +8,20 @@ description: "今日、高校生である僕、Ojunがブログを予算0円で�
 他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。"
 ---
 
-# はじめに
+## はじめに
 今日、高校生の僕(Ojun)がブログを予算0円で作成した。
 
 他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。~~HTMLとかCSSとか書くのめんどくさいし~~
 
 この記事では、どのようにブログを立てたのか紹介しようと思う。参考にしてもらえたら幸いだ。
 
-# 使用技術
+## 使用技術
 静的サイトジェネレータ(SSG)として[hugo framework](https://gohugo.io/)を採用。デプロイには[netlify](https://app.netlify.com/)を用いた。どうやらhugo frameworkは爆速らしい。netlifyは基本無料で使えるサービスである。ドメインはfreenomで無料で取り、SSL化まで無料でできてしまった。
 
-# 環境
+## 環境
 Windows10上で、WSLのUbuntuを使用している。
 
-# hugoを使って静的webサイトを作成
+## hugoを使って静的webサイトを作成
 まず、hugoをインストールする。もちろんパッケージマネージャーは好きなものを使ってよい。僕はaptを使う。
 
 ```
@@ -78,8 +78,8 @@ $ hugo server -t terminal (themeが僕と同じterminalの場合のみ。正直�
 
 すると、localhost:1313にサーバーが立っているはずである。ひとまず、SSGを使ってサイトが建てられた。
 
-# netlifyにデプロイ
+## netlifyにデプロイ
 まず、[netlify](https://app.netlify.com/)に登録した。正直、githubリポジトリを登録するだけで簡単にデプロイできるので、説明はあまり要らないだろう。
 
-# ドメイン取得
+## ドメイン取得
 ドメインは[freenom](https://www.freenom.com/ja/index.html?lang=ja)で無料で取得した。freenomは日本語が怪しいが、今まで特に障害はなかった。
