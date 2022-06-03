@@ -4,6 +4,11 @@ body {
     font-family: 'Comfortaa', cursive;
 }
 
+.menu-trigger {
+    cursor: pointer;
+    user-select: none;
+}
+
 .post {
     margin-top: 10px;
 }
