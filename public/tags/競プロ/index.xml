@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Ojun</title>
-    <link>/posts/</link>
-    <description>Recent content in Posts on Ojun</description>
+    <title>競プロ on Ojun</title>
+    <link>/tags/%E7%AB%B6%E3%83%97%E3%83%AD/</link>
+    <description>Recent content in 競プロ on Ojun</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 25 Jun 2022 13:07:04 +0900</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Jun 2022 13:07:04 +0900</lastBuildDate><atom:link href="/tags/%E7%AB%B6%E3%83%97%E3%83%AD/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ABC255 D</title>
       <link>/posts/tech/2022/6_25/abc255_d/</link>
@@ -98,70 +98,6 @@ $$
     &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
-    </item>
-    
-    <item>
-      <title>高校生が予算0円でブログを作成した話 【hugo】</title>
-      <link>/posts/tech/2022/6_3/started_blog/</link>
-      <pubDate>Fri, 03 Jun 2022 12:21:22 +0900</pubDate>
-      
-      <guid>/posts/tech/2022/6_3/started_blog/</guid>
-      <description>はじめに 今日、高校生の僕(Ojun)がブログを予算0円で作成した。
-他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。HTMLとかCSSとか書くのめんどくさいし
-この記事では、どのようにブログを立てたのか紹介しようと思う。参考にしてもらえたら幸いだ。
-使用技術 静的サイトジェネレータ(SSG)としてhugo frameworkを採用。デプロイにはnetlifyを用いた。どうやらhugo frameworkは爆速らしい。netlifyは基本無料で使えるサービスである。ドメインはfreenomで無料で取り、SSL化まで無料でできてしまった。
-環境 Windows10上で、WSLのUbuntuを使用している。
-hugoを使って静的webサイトを作成 まず、hugoをインストールする。もちろんパッケージマネージャーは好きなものを使ってよい。僕はaptを使う。
-sudo apt install hugo 次に、webサイトのひな形を作る。
-hugo new site (サイト名) によって作成できる。
-そして、themeを入れる。hugoには多彩なthemeがあるが、僕はterminalを用いた。 theme一覧はここにある。
-git init # まだgitリポジトリでないなら実行 git submodule add -f https://github.com/panr/hugo-theme-terminal.git themes/terminal 次にconfigを設定する。プロジェクトルートにconfig.tomlファイルがあるだろう。僕はgithubのREADMEを見ながらconfigを設定した。個人個人、選んだthemeが異なるので、それぞれのREADMEやhugoのdocsを見てもらいたい。
-ここで、一つ記事を作成してみよう。
-hugo new posts/first-post.md すると、次のようなファイルが作成される。
---- title: &amp;#34;My First Post&amp;#34; date: 2019-03-26T08:47:11+01:00 draft: true --- ここで、記事を書いてみよう。もちろん書き方はmarkdownである。記事を書いたらdraftをfalseにしてほしい。 次に、markdownからHTMLを作成しよう。以下のコマンド一発でできる。
-hugo -D 最後に、localhostでサーバーを立ててみよう。これも以下のコマンドでできる。
-hugo server -D hugo server -t terminal (themeが僕と同じterminalの場合のみ。正直違いはよく知らない) すると、localhost:1313にサーバーが立っているはずである。ひとまず、SSGを使ってサイトが建てられた。
-netlifyにデプロイ まず、netlifyに登録した。正直、githubリポジトリを登録するだけで簡単にデプロイできるので、説明はあまり要らないだろう。
-ドメイン取得 ドメインはfreenomで無料で取得した。freenomは日本語が怪しいが、今まで特に障害はなかった。</description>
-      <content>&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;
-&lt;p&gt;今日、高校生の僕(Ojun)がブログを予算0円で作成した。&lt;/p&gt;
-&lt;p&gt;他のブログとの差別化と言えば、WordPressを使わずにneovimでmarkdownをゴリゴリに書いている点だろう。なぜWordPressを使わなかったかというと、レンタルサーバーは面倒かつ、自分の家に物理的なサーバーがないためだ。&lt;del&gt;HTMLとかCSSとか書くのめんどくさいし&lt;/del&gt;&lt;/p&gt;
-&lt;p&gt;この記事では、どのようにブログを立てたのか紹介しようと思う。参考にしてもらえたら幸いだ。&lt;/p&gt;
-&lt;h2 id=&#34;使用技術&#34;&gt;使用技術&lt;/h2&gt;
-&lt;p&gt;静的サイトジェネレータ(SSG)として&lt;a href=&#34;https://gohugo.io/&#34;&gt;hugo framework&lt;/a&gt;を採用。デプロイには&lt;a href=&#34;https://app.netlify.com/&#34;&gt;netlify&lt;/a&gt;を用いた。どうやらhugo frameworkは爆速らしい。netlifyは基本無料で使えるサービスである。ドメインはfreenomで無料で取り、SSL化まで無料でできてしまった。&lt;/p&gt;
-&lt;h2 id=&#34;環境&#34;&gt;環境&lt;/h2&gt;
-&lt;p&gt;Windows10上で、WSLのUbuntuを使用している。&lt;/p&gt;
-&lt;h2 id=&#34;hugoを使って静的webサイトを作成&#34;&gt;hugoを使って静的webサイトを作成&lt;/h2&gt;
-&lt;p&gt;まず、hugoをインストールする。もちろんパッケージマネージャーは好きなものを使ってよい。僕はaptを使う。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install hugo
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;次に、webサイトのひな形を作る。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;hugo new site &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;サイト名&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;によって作成できる。&lt;/p&gt;
-&lt;p&gt;そして、themeを入れる。hugoには多彩なthemeがあるが、僕は&lt;a href=&#34;https://github.com/panr/hugo-theme-terminal&#34;&gt;terminal&lt;/a&gt;を用いた。
-theme一覧は&lt;a href=&#34;https://themes.gohugo.io/&#34;&gt;ここ&lt;/a&gt;にある。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git init &lt;span style=&#34;color:#75715e&#34;&gt;# まだgitリポジトリでないなら実行&lt;/span&gt;
-git submodule add -f https://github.com/panr/hugo-theme-terminal.git themes/terminal
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;次にconfigを設定する。プロジェクトルートにconfig.tomlファイルがあるだろう。僕はgithubのREADMEを見ながらconfigを設定した。個人個人、選んだthemeが異なるので、それぞれのREADMEやhugoのdocsを見てもらいたい。&lt;/p&gt;
-&lt;p&gt;ここで、一つ記事を作成してみよう。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;hugo new posts/first-post.md
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;すると、次のようなファイルが作成される。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-md&#34; data-lang=&#34;md&#34;&gt;---
-title: &amp;#34;My First Post&amp;#34;
-date: 2019-03-26T08:47:11+01:00
-draft: true
----
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;ここで、記事を書いてみよう。もちろん書き方は&lt;a href=&#34;http://www.markdown.jp/what-is-markdown/&#34;&gt;markdown&lt;/a&gt;である。記事を書いたらdraftをfalseにしてほしい。
-次に、markdownからHTMLを作成しよう。以下のコマンド一発でできる。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;hugo -D
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;最後に、localhostでサーバーを立ててみよう。これも以下のコマンドでできる。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;hugo server -D
-hugo server -t terminal &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;themeが僕と同じterminalの場合のみ。正直違いはよく知らない&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;すると、localhost:1313にサーバーが立っているはずである。ひとまず、SSGを使ってサイトが建てられた。&lt;/p&gt;
-&lt;h2 id=&#34;netlifyにデプロイ&#34;&gt;netlifyにデプロイ&lt;/h2&gt;
-&lt;p&gt;まず、&lt;a href=&#34;https://app.netlify.com/&#34;&gt;netlify&lt;/a&gt;に登録した。正直、githubリポジトリを登録するだけで簡単にデプロイできるので、説明はあまり要らないだろう。&lt;/p&gt;
-&lt;h2 id=&#34;ドメイン取得&#34;&gt;ドメイン取得&lt;/h2&gt;
-&lt;p&gt;ドメインは&lt;a href=&#34;https://www.freenom.com/ja/index.html?lang=ja&#34;&gt;freenom&lt;/a&gt;で無料で取得した。freenomは日本語が怪しいが、今まで特に障害はなかった。&lt;/p&gt;
-</content>
     </item>
     
   </channel>
