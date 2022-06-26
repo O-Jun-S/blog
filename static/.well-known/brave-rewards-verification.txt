@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: ojun.ga
+Token: 466895672f15bbef2eef60a80649a8ae0b9e5499393e356cf7b54f2ca736152a
