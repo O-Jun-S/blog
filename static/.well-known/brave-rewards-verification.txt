@@ -1,4 +1,4 @@
 This is a Brave Rewards publisher verification file.
 
-Domain: ojun.ga
-Token: 50d5e91566c01d7bb3d7c60c1dbaba4874892ad68192d82ac7fdeb6022003f9e
+Domain: ojun-blog.netlify.app
+Token: bce2ca7b55a39d7acdfbd0a9f87b9806116c8f80384d32a814a990e5a29874af
