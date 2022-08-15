@@ -122,7 +122,18 @@ cipher &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&
             &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ans[:&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;shell&amp;#34;&lt;/span&gt;:
                 &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(ans)
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;forensics&#34;&gt;forensics&lt;/h2&gt;
+&lt;h3 id=&#34;heaven&#34;&gt;Heaven&lt;/h3&gt;
+&lt;p&gt;下の画像にflagが隠れているので、それを探す問題です。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/heaven.jpeg&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;ここで問題文。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;I was in the seventh heaven painted red green and blue&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;さて、画像に情報を隠す方法はいくつかありますが、今回使われた方法はbitに隠すという方法です。
+問題文より、RGB全部の7番目のbitに隠したことが分かります。&lt;/p&gt;
+&lt;p&gt;僕は&lt;a href=&#34;https://stegonline.georgeom.net/upload&#34;&gt;このサイト&lt;/a&gt;を利用してデータを抽出しました。&lt;/p&gt;
+</content>
     </item>
     
     <item>

@@ -139,3 +139,19 @@ for i in range(length):
 
 ```
 
+## forensics
+
+### Heaven
+下の画像にflagが隠れているので、それを探す問題です。
+
+![image](img/heaven.jpeg)
+
+ここで問題文。
+
+> "I was in the seventh heaven painted red green and blue"
+
+さて、画像に情報を隠す方法はいくつかありますが、今回使われた方法はbitに隠すという方法です。
+問題文より、RGB全部の7番目のbitに隠したことが分かります。
+
+僕は[このサイト](https://stegonline.georgeom.net/upload)を利用してデータを抽出しました。
+
