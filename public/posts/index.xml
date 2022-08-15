@@ -5,7 +5,126 @@
     <link>/posts/</link>
     <description>Recent content in Posts on Ojun</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 25 Jul 2022 17:37:09 +0900</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Aug 2022 12:13:36 +0900</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SHELLCTF writeup</title>
+      <link>/posts/tech/2022/8_15/shellctf/</link>
+      <pubDate>Mon, 15 Aug 2022 12:13:36 +0900</pubDate>
+      
+      <guid>/posts/tech/2022/8_15/shellctf/</guid>
+      <description>概要 SHELLCTFというCTFに参加しました。結果は1121位中294位でした。
+時間がない中まぁまぁ健闘したんじゃないかなぁと思います。主にreversingを解きましたが、cryptoやforensicsも少し解けました。 この記事には解けた問題の解説を書いていこうと思います。
+reversing reversingに主に使用したツールはradare2、ghidraです。
+Pulling the strings なんかアセンブリを解析したらflagっぽいものがあったので、入力したらflagでした&amp;hellip; Keygen とりあえずアセンブリを解析しましょう。
+いろいろ処理がありますが、とりあえず上手くいった場合getString関数を実行するみたいです。ではgetString関数の中身を見てみましょう。
+flagが直に書かれていることが分かりました。これを入力すれば正解です。
+warmup 少しプログラムが複雑なのでghidraでデコンパイルしました。
+local_38は標準入力です。 長々とlocal_a8というバイト列が定義されていて、その後ループ処理をしていることが分かりました。 このループ処理によってbVar1がtrueとなったときが正解のようです。ではどのような処理がされているのでしょうか。
+local_a8[local_ac] &amp;gt;&amp;gt; 2 == (int)local_38[local_ac] ということは、$0 \le i \lt 27$において、local_a8のi番目のバイトを右に2つシフトしたものと、標準入力local_38のi番目の文字が等しければよいということになります。 よって、local_a8のバイト列をすべて右に2つシフトさせれば正解です。 以下のようなスクリプトを書きました。
+lst = [0x1cc, 0x1a0, 0x194, 0x1b0, 0x1b0, 0x18c, 0x1d0, 0x198, 0x1ec, 0x188, 0xc4, 0x1d0, 0x15c, 0x1a4, 0xd4, 0x194, 0x17c, 0xc0, 0x1c0, 0xcc, 0x1c8, 0x104, 0x1d0, 0xc0, 0x1c8, 0x14c, 0x1f4] print(&amp;#34;&amp;#34;.join(map(lambda x: chr(x &amp;gt;&amp;gt; 2), lst))) How to defeat a dragon アセンブリを見てみましょう。</description>
+      <content>&lt;h2 id=&#34;概要&#34;&gt;概要&lt;/h2&gt;
+&lt;p&gt;SHELLCTFというCTFに参加しました。結果は1121位中294位でした。&lt;/p&gt;
+&lt;p&gt;時間がない中まぁまぁ健闘したんじゃないかなぁと思います。主にreversingを解きましたが、cryptoやforensicsも少し解けました。
+この記事には解けた問題の解説を書いていこうと思います。&lt;/p&gt;
+&lt;h2 id=&#34;reversing&#34;&gt;reversing&lt;/h2&gt;
+&lt;p&gt;reversingに主に使用したツールはradare2、ghidraです。&lt;/p&gt;
+&lt;h3 id=&#34;pulling-the-strings&#34;&gt;Pulling the strings&lt;/h3&gt;
+&lt;p&gt;なんかアセンブリを解析したらflagっぽいものがあったので、入力したらflagでした&amp;hellip;
+&lt;img src=&#34;img/food.png&#34; alt=&#34;assembly&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;keygen&#34;&gt;Keygen&lt;/h3&gt;
+&lt;p&gt;とりあえずアセンブリを解析しましょう。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/keygen.png&#34; alt=&#34;assembly&#34;&gt;&lt;/p&gt;
+&lt;p&gt;いろいろ処理がありますが、とりあえず上手くいった場合getString関数を実行するみたいです。ではgetString関数の中身を見てみましょう。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/keygen2.png&#34; alt=&#34;assembly&#34;&gt;&lt;/p&gt;
+&lt;p&gt;flagが直に書かれていることが分かりました。これを入力すれば正解です。&lt;/p&gt;
+&lt;h3 id=&#34;warmup&#34;&gt;warmup&lt;/h3&gt;
+&lt;p&gt;少しプログラムが複雑なのでghidraでデコンパイルしました。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/warm.png&#34; alt=&#34;source&#34;&gt;&lt;/p&gt;
+&lt;p&gt;local_38は標準入力です。
+長々とlocal_a8というバイト列が定義されていて、その後ループ処理をしていることが分かりました。
+このループ処理によってbVar1がtrueとなったときが正解のようです。ではどのような処理がされているのでしょうか。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;local_a8[local_ac] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;)local_38[local_ac]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;ということは、$0 \le i \lt 27$において、local_a8のi番目のバイトを右に2つシフトしたものと、標準入力local_38のi番目の文字が等しければよいということになります。
+よって、local_a8のバイト列をすべて右に2つシフトさせれば正解です。
+以下のようなスクリプトを書きました。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;lst &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;0x1cc&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x1a0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x194&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x1b0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x1b0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x18c&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x1d0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x198&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x1ec&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x188&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0xc4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x1d0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x15c&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x1a4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0xd4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x194&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x17c&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0xc0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x1c0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0xcc&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x1c8&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x104&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x1d0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0xc0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x1c8&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x14c&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0x1f4&lt;/span&gt;]
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;join(map(&lt;span style=&#34;color:#66d9ef&#34;&gt;lambda&lt;/span&gt; x: chr(x &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;), lst)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;how-to-defeat-a-dragon&#34;&gt;How to defeat a dragon&lt;/h3&gt;
+&lt;p&gt;アセンブリを見てみましょう。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/dragon.png&#34; alt=&#34;assembly&#34;&gt;&lt;/p&gt;
+&lt;p&gt;モロにflagがありますね&amp;hellip;&lt;/p&gt;
+&lt;p&gt;{    }の中身が16進数なので、それを文字に戻したらflagです。&lt;/p&gt;
+&lt;h3 id=&#34;tea&#34;&gt;tea&lt;/h3&gt;
+&lt;p&gt;ちょっと難しいです。とりあえずアセンブリを見てみましょうか。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/tea_asm.png&#34; alt=&#34;assembly&#34;&gt;&lt;/p&gt;
+&lt;p&gt;入力した文字列に以下の3つの操作が施されています。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;addSugar&lt;/li&gt;
+&lt;li&gt;addTea&lt;/li&gt;
+&lt;li&gt;addMilk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;そして、最後のstrainAndServeを見てみると&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/tea_asm2.png&#34; alt=&#34;assembly2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;3つの操作を施した文字列が、&amp;ldquo;R;crc75ihl`cNYe`]m%50gYhugow~34i&amp;quot;という訳のわからん文字列になったら正解ということです。
+では、それぞれの操作を逆算すればよいですね。それぞれがどんな操作なのかというと。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;addSugar: 偶数番目(0-indexed)の文字を集めた文字列をA、奇数番目の文字を集めた文字列をBとし、ABという形に並べ替える。&lt;/li&gt;
+&lt;li&gt;addTeaその1: 文字列の長さをnとすると、$0 \le i \lt \frac{n}{2}$番目の文字の文字コードに、$\lfloor \frac{i}{2} \times -3 \rfloor$を加算する。&lt;/li&gt;
+&lt;li&gt;addTeaその2: 文字列の長さをnとすると、$\frac{n}{2} \le i \lt n$番目の文字の文字コードに、$\lfloor \frac{i}{6} \rfloor$を加算する。&lt;/li&gt;
+&lt;li&gt;addMilk: 文字列のはじめから、5という文字が出てくる直前までをAとする。5から、Rがという文字が出てくる直前までをBとする。Rから最後までをCとする。そして、それらをCABという順に並び変える。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以上の操作の逆をすれば良いことになります。addMilkに関しては、どこでCABという風に切ればよいのか定まらないので、少しbruteforce的な手法を取りました。
+以下のスクリプトを書いてこの問題が解けました。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;length &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;32&lt;/span&gt;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;removesugar&lt;/span&gt;(string):
+    first &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; string[:int(length&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)]
+    second &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; string[int(length&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;):]
+
+    result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(length):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(i&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;):
+            result &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; second[int(i&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)]
+
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+            result &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; first[int(i&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)]
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;removetea&lt;/span&gt;(string):
+    result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(int(length&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)):
+        result &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; chr(ord(string[i]) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; int(i &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(int(length&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;), length):
+        result &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; chr(ord(string[i]) &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; int(i&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;))
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result
+
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;removemilk&lt;/span&gt;(string, partition, five):
+    first &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; string[:partition]
+    second &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; string[partition:five]
+    third &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; string[five:]
+    result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; second &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; third &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; first
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result
+
+
+cipher &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;R;crc75ihl`cNYe`]m&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;%50g&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;Yhugow~34i&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(length):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; cipher[i] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;5&amp;#34;&lt;/span&gt;:
+        five &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i
+
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; partition &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, five&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+            ans &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; removesugar(removetea(removemilk(cipher, partition, five)))
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ans[:&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;shell&amp;#34;&lt;/span&gt;:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(ans)
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+    </item>
+    
     <item>
       <title>ABC261 D</title>
       <link>/posts/tech/2022/7_25/abc261_d/</link>
