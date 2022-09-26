@@ -8,10 +8,10 @@
     <lastBuildDate>Mon, 26 Sep 2022 21:24:13 +0900</lastBuildDate><atom:link href="/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Lakectf Attack on Canary Writeups</title>
-      <link>/posts/tech/2022/9_26/lakectf/lakectf_canary/</link>
+      <link>/posts/tech/2022/9_26/lakectf/</link>
       <pubDate>Mon, 26 Sep 2022 21:24:13 +0900</pubDate>
       
-      <guid>/posts/tech/2022/9_26/lakectf/lakectf_canary/</guid>
+      <guid>/posts/tech/2022/9_26/lakectf/</guid>
       <description>概要 実行可能ファイルが配られるので、実行アドレスをwin関数に飛ばしたらflagが得られるよという問題です。
 バイナリ解析 ghidraでディスアセンブリ/デコンパイルすると次のような結果になりました。
 このプログラムは、プレイヤーに次の操作を可能にしています。

